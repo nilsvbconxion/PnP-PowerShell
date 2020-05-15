@@ -46,6 +46,10 @@ namespace SharePointPnP.PowerShell.Commands.Lists
         Code = "PS:> Get-PnPListItem -List Samples -FolderServerRelativeUrl \"/sites/contosomarketing/Lists/Samples/Demo\"",
         Remarks = "Retrieves all list items from the Demo folder in the Samples list located in the contosomarketing site collection",
         SortOrder = 8)]
+    [CmdletExample(
+        Code = "PS:> Get-PnPListItem -List Tasks -Fields \"Title\",\"My_x0020_Custom_x0020_Field\"",
+        Remarks = "Retrieves the list item with Fields Title and My_x0020_Custom_x0020_Field from the Tasks list",
+        SortOrder = 9)]
     public class GetListItem : PnPWebCmdlet
     {
         private const string ParameterSet_BYID = "By Id";
@@ -68,9 +72,9 @@ namespace SharePointPnP.PowerShell.Commands.Lists
         [Parameter(Mandatory = false, HelpMessage = "The server relative URL of a list folder from which results will be returned.", ParameterSetName = ParameterSet_ALLITEMS)]
         public string FolderServerRelativeUrl;
 
-        [Parameter(Mandatory = false, HelpMessage = "The fields to retrieve. If not specified all fields will be loaded in the returned list object.", ParameterSetName = ParameterSet_ALLITEMS)]
-        [Parameter(Mandatory = false, HelpMessage = "The fields to retrieve. If not specified all fields will be loaded in the returned list object.", ParameterSetName = ParameterSet_BYID)]
-        [Parameter(Mandatory = false, HelpMessage = "The fields to retrieve. If not specified all fields will be loaded in the returned list object.", ParameterSetName = ParameterSet_BYUNIQUEID)]
+        [Parameter(Mandatory = false, HelpMessage = "The fields to retrieve (by internal fieldname). If not specified all fields will be loaded in the returned list object.", ParameterSetName = ParameterSet_ALLITEMS)]
+        [Parameter(Mandatory = false, HelpMessage = "The fields to retrieve (by internal fieldname). If not specified all fields will be loaded in the returned list object.", ParameterSetName = ParameterSet_BYID)]
+        [Parameter(Mandatory = false, HelpMessage = "The fields to retrieve (by internal fieldname). If not specified all fields will be loaded in the returned list object.", ParameterSetName = ParameterSet_BYUNIQUEID)]
         public string[] Fields;
 
         [Parameter(Mandatory = false, HelpMessage = "The number of items to retrieve per page request.", ParameterSetName = ParameterSet_ALLITEMS)]
